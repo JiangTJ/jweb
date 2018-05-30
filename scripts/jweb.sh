@@ -26,11 +26,10 @@ while getopts "c:p:w:" opt; do
   case ${opt} in
     c)
       config_dir=`readlink -f $OPTARG`
-      java_command=${java_command}" --spring.config.location=file:"${config_dir}
+      java_command=${java_command}" --spring.config.additional-location=file:"${config_dir}
       ;;
     p)
-      server_port=`readlink -f $OPTARG`
-      java_command=${java_command}" --server.port="${server_port}
+      java_command=${java_command}" --server.port="$OPTARG
       ;;
     w)
       static_dir=`readlink -f $OPTARG`
