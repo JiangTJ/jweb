@@ -1,0 +1,43 @@
+image: maven:3.5.2-jdk-8
+
+stages:
+  - test
+  - release
+  - page
+  - tags
+
+test:
+  image: maven:3.5.2-jdk-8
+  stage: test
+  script: "mvn test"
+
+build-release:
+  stage: release
+  script: "mvn package -B -Dmaven.test.skip=true"
+  artifacts:
+    paths:
+      - target/jweb.jar
+  only:
+    - release
+
+pages:
+  stage: page
+  script:
+    - mkdir public
+    - mv docs/* public
+  artifacts:
+    paths:
+      - public
+  only:
+    - release
+
+build-tags:
+  stage: tags
+  script: "mvn package -B -Dmaven.test.skip=true"
+  artifacts:
+    paths:
+      - target/jweb.jar
+  only:
+    - tags
+
+

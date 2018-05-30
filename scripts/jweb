@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# export PATH=$PATH:your_dir
+# Example: export PATH=$PATH:/mnt/c/Users/MrTT/IdeaProjects/jweb/scripts
+
+if ! hash java 2>/dev/null; then
+  echo "I require java but it's not installed. Please install openJDK.";
+  exit 1;
+fi
+
+# 获取脚本路径
+script_path=`dirname $0`
+
+# 前置判断
+if [ ! -e ${script_path}"/jweb.jar" ]; then
+  echo "Downloading...";
+  exit 1;
+fi
+
+# java_command
+java_command="java -jar "${script_path}"/jweb.jar"
+
+while getopts "c:w:" opt; do
+  case ${opt} in
+    c)
+      config_dir=`readlink -f $OPTARG`
+      java_command=${java_command}" --spring.config.location=file:"${config_dir}
+      ;;
+    w)
+      static_dir=`readlink -f $OPTARG`
+      java_command=${java_command}" --spring.resources.static-locations=file:"${static_dir}
+      ;;
+    \?)
+      echo "Please read docs !"
+      ;;
+  esac
+done
+
+# 运行
+echo ${java_command}
+${java_command}
