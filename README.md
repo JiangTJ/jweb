@@ -4,9 +4,9 @@ A simple java web server. Use cli to serve static resource. It based on spring b
 
 ## 快速开始
 
-1. 下载脚本`repo/scripts/jweb`
+1. 下载脚本`repo/scripts/jweb.sh`
 2. 可选：添加脚本至path目录
-3. `jweb -w your_static_dir`
+3. `jweb.sh -w your_static_dir`
 
 ## 命令参数
 
