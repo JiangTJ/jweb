@@ -16,6 +16,7 @@ script_path=`dirname $0`
 if [ ! -e ${script_path}"/jweb.jar" ]; then
   echo "Downloading jar ...";
   wget -O jweb.jar "https://gitlab.com/jiangtj/jweb/-/jobs/artifacts/release/raw/target/jweb.jar?job=build-release"
+  mv jweb.jar ${script_path}
 fi
 
 # java_command
