@@ -1,6 +1,6 @@
 # JWeb
 
-A simple java web server. Use cli to serve static resource. It based on spring boot.
+JWeb 是一个基于Spring Boot的简单服务。提供Shell脚本，以简单的方式部署以及运行静态资源
 
 ## 快速开始
 
